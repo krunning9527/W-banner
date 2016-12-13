@@ -1,244 +1,31 @@
-<!DOCTYPE html>
-<html>
+﻿<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>W-game by Wbiokr</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header" style="height:100%">
+      <h1 class="project-name" styl>W-banner-轮播图</h1>
+      <h2 class="project-tagline">不同方法，不同效果</h2>
+      <h3 class="project-tagline">GitHub:Wbiokr</h3>
+      <h3 class="project-tagline">姓名:陈博先</h3>
+      <a href="banner-1/index.html" class="btn" title="js+css3完成">banner-1<br>左右立体滚动</a>
+    <a href="banner-2/index.html" class="btn" title="css3-transition属性完成">banner-2<br>百窗扇叶效果</a>
+    <a href="banner-3/index.html" class="btn" title="css3-3D动画+jq">banner-3<br>立体变形滚动</a>
+    <a href="banner-4/index.html" class="btn" title="transform-scale与transition">banner-4<br>滑入放大变色</a>
+    <a href="banner-5/index.html" class="btn" title="关键帧keyframe">banner-5<br>胶片循环轮播</a>
+    <a href="banner-6/index.html" class="btn" title="css3+jq完成">banner-6<br>缩放选中效果</a>
 
-	<head>
-		<meta charset="UTF-8">
-		<title></title>
-	</head>
-	<style>
-		ul {
-			width: 1000px;
-			margin: 50px auto;
-			/*margin-top: 50px;*/
-			position: relative;
-			height: 390px;
-		}
-		
-		li:nth-child(2) {
-			background: url(img/1.jpg);
-			/*transform=scale(1.0) translateX(0);*/
-			/*transition: all ;*/
-		}
-		
-		li:nth-child(3) {
-			background: url(img/2.jpg);
-		}
-		
-		li:nth-child(4) {
-			background: url(img/3.jpg);
-		}
-		
-		li:nth-child(5) {
-			background: url(img/4.jpg);
-		}
-		
-		li:nth-child(6) {
-			background: url(img/5.jpg);
-		}
-		
-		ul.list li {
-			width: 800px;
-			height: 360px;
-			background-position: center center;
-			background-size: contain;
-			background-repeat: no-repeat;
-			list-style: none;
-			position: absolute;
-			top: 0;
-			left: 100px;
-		}
-		
-		.wrapImg {
-			height: 360px;
-			width: 110%;
-			position: absolute;
-			top: 0;
-			left: -50px;
-			background: rgba(0, 0, 0, .2);
-			z-index: 10;
-		}
-		
-		.btns {
-			position: absolute;
-			bottom: 20px;
-			left: 100px;
-			background: gray;
-			overflow: hidden;
-			z-index: 100;
-		}
-		
-		.btns span {
-			color: #fff;
-			float: left;
-			/*height: 20px;*/
-			/*padding: 8px 15px;*/
-			height: 30px;
-			line-height: 30px;
-			padding: 0 15px;
-			border-left:1px solid #fff ;
-			cursor: pointer;
-			z-index: 100;
-			
-		}
-		
-		.prev {
-			position: absolute;
-			left: -30px;
-			top: 170px;
-			display: block;
-			width: 40px;
-			height: 40px;
-			font-weight: bolder;
-			font-size: 38px;
-			color: #f00;
-			z-index: 50;
-			cursor: pointer;
-		}
-		
-		.next {
-			position: absolute;
-			right: -30px;
-			top: 170px;
-			display: block;
-			width: 40px;
-			height: 40px;
-			font-weight: bolder;
-			font-size: 38px;
-			color: #f00;
-			z-index: 50;
-			cursor: pointer;
-		}
-	</style>
-
-	<body>
-		<ul class="list">
-			<p class="wrapImg"></p>
-			<li class="img1"></li>
-			<li class="img2"></li>
-			<li class="img3"></li>
-			<li class="img4"></li>
-			<li class="img5"></li>
-			<div class="btns">
-				<span>基金盈利榜</span>
-				<span>操盘牛人</span>
-				<span>推广赚佣</span>
-				<span>安全保障</span>
-				<span>交易流程</span>
-			</div>
-			<span class="prev">&lt;</span>
-			<span class="next">&gt;</span>
-		</ul>
-	</body>
-	<script>
-		var list = document.getElementsByTagName('li');
-		var len = list.length;
-		var index = 0;
-		
-		var buttonDiv = document.getElementsByClassName('btns')[0];
-		var btns = buttonDiv.getElementsByTagName('span');
-
-//动画函数
-		function autoPlay() {
-
-			for(var i = 0; i < len; i++) {
-				btns[i].style.background = 'gray';
-				if(i - index == 0) {
-					list[i].style.transform = 'scale(1.0) translateX(0)';
-					list[i].style.zIndex = 20;
-					list[i].style.transition = 'all 1s ease'
-				} else if(i - index == -1 || i - index == 4) {
-					list[i].style.transform = 'scale(0.8) translateX(25%)';
-					list[i].style.zIndex = 5;
-					list[i].style.transition = 'all 1s ease'
-				} else if(i - index == -2 || i - index == 3) {
-					list[i].style.transform = 'scale(0.6) translateX(60%)';
-					list[i].style.zIndex = 1;
-					list[i].style.transition = 'all 1s ease'
-				} else if(i - index == 1 || i - index == -4) {
-					list[i].style.transform = 'scale(0.8) translateX(-25%)';
-					list[i].style.zIndex = 5;
-					list[i].style.transition = 'all 1s ease'
-				} else if(i - index == 2 || i - index == -3) {
-					list[i].style.transform = 'scale(0.6) translateX(-60%)';
-					list[i].style.zIndex = 1;
-					list[i].style.transition = 'all 1s ease'
-				}
-			};
-			btns[index].style.background = 'orange'
-		}
-		
-//		网页打开直接运行一次,初始化各个图片位置
-		autoPlay();
-		
-//		定时器开启
-		var autoTimer = setInterval(
-			function() {
-				if(index == 5) {
-					index = 0;
-				};
-
-				autoPlay();
-				index++;
-			}, 2000);
-
-		var prev = document.getElementsByClassName('prev')[0];
-		var next = document.getElementsByClassName('next')[0];
-		var ul = document.getElementsByClassName('list')[0];
+    </section>
 
 
-//		鼠标滑入ul元素区域,自动轮播停止
-		ul.onmouseover = function() {
-			clearInterval(autoTimer);
-		}
-		
-//		鼠标划出,自动轮播开始
-		ul.onmouseout = function() {
-			autoTimer = setInterval(function() {
-				if(index == 5) {
-					index = 0;
-				};
-
-				autoPlay();
-				index++;
-			}, 2000);
-		}
 
 
-//上一张图片
-		prev.onclick = function() {
-			//			index--;
-			if(index == 0) {
-				index = 4;
-			} else {
-				index--;
-			}
-
-			autoPlay();
-
-		}
-		
-//		下一张图片
-		next.onclick = function() {
-			index++;
-			if(index == 5) {
-				index = 0;
-			};
-
-			autoPlay();
-
-		}
-		
-		
-		
-		
-		for(var i=0;i<btns.length;i++){
-			btns[i].index=i;
-			btns[i].onclick=function(){
-				index=this.index;
-				autoPlay()
-			}
-		}
-		
-	</script>
-
+  </body>
 </html>
